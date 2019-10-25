@@ -13,6 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "normalize.css": "^8.0.1",
+    "reset-css": "^5.0.1",
     "vue": "^2.5.21",
     "vue-router": "^3.0.2",
     "vuex": "^3.1.0"
