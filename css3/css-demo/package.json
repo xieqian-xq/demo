@@ -1,0 +1,30 @@
+{
+  "name": "css-demo",
+  "version": "1.0.0",
+  "description": "收集有关css的内容",
+  "scripts": {
+    "dev": "gulp clear && gulp",
+    "build": "gulp clear && gulp release"
+  },
+  "keywords": [],
+  "author": "xieqian",
+  "license": "ISC",
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "reset-css": "^5.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.6.5",
+    "browser-sync": "^2.26.3",
+    "del": "^5.1.0",
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.1",
+    "node-sass": "^4.13.0"
+  }
+}

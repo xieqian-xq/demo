@@ -1,0 +1,24 @@
+@import "./scss/normalize";
+@import "./scss/reset";
+@import "./scss/variables.scss";
+
+.header {
+    width: 100%;
+    text-align: center;
+
+    .logo {
+        font-size: 20px;
+        font-weight: 700;
+
+        .title {
+            line-height: 35px;
+            transform: rotate(30deg);
+            background-size: 63px 100px;
+            background-image: linear-gradient(#e66465, #9198e5);
+        }
+    }
+}
+
+::placeholder {
+    color: gray;
+}
