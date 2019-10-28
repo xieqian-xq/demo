@@ -87,9 +87,9 @@
     <script>
         var defineScrollBar = document.querySelector(".q-scrollbar-define");
         var defineScrollBarY = document.querySelector(".q-scrollbar-define__ybar");
-        window.addEventListener("load", function (e) {
-            let scrollHeight = defineScrollBar.scrollHeight;
-            let offsetHeight = defineScrollBar.offsetHeight;
+        defineScrollBar.addEventListener("mouseenter", function (e) {
+            let scrollHeight = e.target.scrollHeight;
+            let offsetHeight = e.target.offsetHeight;
             if (scrollHeight > offsetHeight) {
                 let scrollbarHeight = Math.round(offsetHeight / scrollHeight * offsetHeight);
                 defineScrollBarY.style.height = scrollbarHeight + "px";

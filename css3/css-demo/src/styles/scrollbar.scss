@@ -92,6 +92,14 @@
         width: 6px;
         height: 0px;
         background-color: rgba(0, 0, 0, 0.35);
-        border-radius: 4px
+        border-radius: 4px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    &:hover {
+        .q-scrollbar-define__ybar {
+            opacity: 1;
+        }
     }
 }
