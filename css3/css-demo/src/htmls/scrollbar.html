@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>滚动条</title>
+    <link rel="stylesheet" href="../styles/scrollbar.css" />
+</head>
+<body>
+    <div class="header-box">
+        <div class="title-box">默认滚动条</div>
+        <div class="title-box">隐藏滚动条</div>
+        <div class="title-box">隐藏滚动条(webkit)</div>
+    </div>
+    <div class="content-box">
+        <div class="scroll-box">
+            <div class="default-scrollbar">
+                <p class="height100">1</p>
+                <p class="height100">2</p>
+                <p class="height100">3</p>
+                <p class="height100">4</p>
+                <p class="height100">5</p>
+                <p class="height100">6</p>
+            </div>
+        </div>
+        <div class="scroll-box">
+            <div class="default-scrollbar q-scrollbar-hide-define">
+                <p class="height100">1</p>
+                <p class="height100">很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长</p>
+                <p class="height100">3</p>
+                <p class="height100">4</p>
+                <p class="height100">5</p>
+                <p class="height100">6</p>
+            </div>
+        </div>
+        <div class="scroll-box">
+            <div class="default-scrollbar q-scrollbar-hide">
+                <p class="height100">1</p>
+                <p class="height100">2</p>
+                <p class="height100">3</p>
+                <p class="height100">4</p>
+                <p class="height100">5</p>
+                <p class="height100">6</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="header-box">
+        <div class="title-box">默认滚动条</div>
+        <div class="title-box">自定义滚动条</div>
+        <div class="title-box">自定义滚动条(webkit)</div>
+    </div>
+    <div class="content-box">
+        <div class="scroll-box">
+            <div class="default-scrollbar">
+                <p class="height100">1</p>
+                <p class="height100">2</p>
+                <p class="height100">3</p>
+                <p class="height100">4</p>
+                <p class="height100">5</p>
+                <p class="height100">6</p>
+            </div>
+        </div>
+        <div class="scroll-box">
+            <div class="default-scrollbar q-scrollbar-hide-define q-scrollbar-define">
+                <div class="q-scrollbar-define__ybar"></div>
+                <p class="height100">1</p>
+                <p class="height100">2</p>
+                <p class="height100">3</p>
+                <p class="height100">4</p>
+                <p class="height100">5</p>
+                <p class="height100">6</p>
+            </div>
+        </div>
+        <div class="scroll-box">
+            <div class="default-scrollbar q-scrollbar">
+                <p class="height100">1</p>
+                <p class="height100">2</p>
+                <p class="height100">3</p>
+                <p class="height100">4</p>
+                <p class="height100">5</p>
+                <p class="height100">6</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        var defineScrollBar = document.querySelector(".q-scrollbar-define");
+        var defineScrollBarY = document.querySelector(".q-scrollbar-define__ybar");
+        window.addEventListener("load", function (e) {
+            let scrollHeight = defineScrollBar.scrollHeight;
+            let offsetHeight = defineScrollBar.offsetHeight;
+            if (scrollHeight > offsetHeight) {
+                let scrollbarHeight = Math.round(offsetHeight / scrollHeight * offsetHeight);
+                defineScrollBarY.style.height = scrollbarHeight + "px";
+            }
+        });
+        defineScrollBar.addEventListener("scroll", function (e) {
+            let scrollHeight = e.target.scrollHeight;
+            let offsetHeight = e.target.offsetHeight;
+            let scrollTop = e.target.scrollTop;
+            if (scrollHeight > offsetHeight) {
+                let scrollbarHeight = Math.round(offsetHeight / scrollHeight * offsetHeight);
+                let scrollbarOffsetHeight = offsetHeight - scrollbarHeight;
+                let scrollOffsetHeight = scrollHeight - offsetHeight;
+                defineScrollBarY.style.top = Math.round(scrollTop + (scrollTop * scrollbarOffsetHeight / scrollOffsetHeight)) + "px";
+            }
+        });
+    </script>
+</body>
+</html>

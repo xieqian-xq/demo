@@ -1,0 +1,97 @@
+@import "./scss/index.scss";
+
+.header-box {
+    width: 1200px;
+    height: 40px;
+    line-height: 40px;
+    margin: 10px auto;
+    display: flex;
+}
+
+.header-box .title-box {
+    flex: 1px;
+    height: 100%;
+    text-align: center;
+}
+
+.content-box {
+    width: 1200px;
+    height: 400px;
+    margin: 0px auto;
+    border: 1px solid #ccc;
+    display: flex;
+}
+
+.scroll-box {
+    flex: 1px;
+    height: 100%;
+    background-color: #f2f2f2;
+    margin-right: 10px;
+    overflow: hidden;
+}
+
+.scroll-box:first-child {
+    margin-left: 10px;
+}
+
+.height100 {
+    height: 100px;
+}
+
+// 默认滚动条
+.default-scrollbar {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+// 显示自定义滚动条
+.q-scrollbar {
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.35);
+        border-radius: 4px
+    }
+}
+
+// 隐藏自定义滚动条
+.q-scrollbar-hide {
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.35);
+    }
+}
+
+// 隐藏滚动条
+.q-scrollbar-hide-define {
+    margin-right: -17px;
+}
+
+// 自定义滚动条
+.q-scrollbar-define {
+    position: relative;
+
+    &__ybar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 6px;
+        height: 0px;
+        background-color: rgba(0, 0, 0, 0.35);
+        border-radius: 4px
+    }
+}

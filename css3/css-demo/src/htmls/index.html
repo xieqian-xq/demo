@@ -5,8 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>css示例</title>
+    <link rel="stylesheet" href="../styles/index.css" />
 </head>
 <body>
+    <div id="demoBox" class="demo-box">
+        <!-- <div class="nav-block">
+            <a class="nav-block__link" href="./scrollbar.html">滚动条</a>
+        </div> -->
+    </div>
+    <script>
+        let demoBox = document.getElementById("demoBox");
+        let linkList = [
+            {
+                link: "../htmls/scrollbar.html",
+                title: "滚动条"
+            },
+            {
+                link: "../htmls/scrollbar.html",
+                title: "滚动条"
+            },
+            {
+                link: "../htmls/scrollbar.html",
+                title: "滚动条"
+            }
+        ];
 
+        linkList.map(item => {
+            return createLink(item);
+        }).forEach(item => {
+            demoBox.appendChild(item);
+        });
+
+        function createLink(linkObj) {
+            let link = document.createElement("a");
+            link.className = "nav-block__link";
+            link.href = linkObj.link;
+            link.text = linkObj.title;
+
+            let wrapper = document.createElement("div");
+            wrapper.className = "nav-block";
+            wrapper.appendChild(link);
+            return wrapper;
+        }
+    </script>
 </body>
+
 </html>
