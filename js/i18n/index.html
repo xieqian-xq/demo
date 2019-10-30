@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>i18n</title>
+</head>
+<body>
+    <p data-i18n="whyNot">有何不可</p>
+    <p data-i18n="rainUp">清明雨上</p>
+    <script src="./scripts/jquery/jquery.js"></script>
+    <script src="./scripts/jquery.i18n.properties/jquery.i18n.properties.js"></script>
+    <script>
+        $.i18n.properties({
+            name: 'lang',
+            path: 'locale/',
+            mode: 'map',
+            language: 'en',
+            async: true,
+            callback: function () {
+                $("[data-i18n]").each(function() {
+                    let key = $(this).data("i18n");
+                    $(this).html($.i18n.prop(key));
+                });
+            }
+        });
+    </script>
+</body>
+</html>
