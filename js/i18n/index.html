@@ -7,24 +7,34 @@
     <title>i18n</title>
 </head>
 <body>
+    <select name="language" id="language">
+        <option value="cn">中文</option>
+        <option value="en">英文</option>
+    </select>
     <p data-i18n="whyNot">有何不可</p>
     <p data-i18n="rainUp">清明雨上</p>
     <script src="./scripts/jquery/jquery.js"></script>
     <script src="./scripts/jquery.i18n.properties/jquery.i18n.properties.js"></script>
     <script>
-        $.i18n.properties({
-            name: 'lang',
-            path: 'locale/',
-            mode: 'map',
-            language: 'en',
-            async: true,
-            callback: function () {
-                $("[data-i18n]").each(function() {
-                    let key = $(this).data("i18n");
-                    $(this).html($.i18n.prop(key));
-                });
-            }
-        });
+        function renderI18N(lang) {
+            $.i18n.properties({
+                name: 'lang',
+                path: 'locale/',
+                mode: 'map',
+                language: lang,
+                async: true,
+                callback: function () {
+                    $("[data-i18n]").each(function () {
+                        let key = $(this).data("i18n");
+                        $(this).html($.i18n.prop(key));
+                    });
+                }
+            });
+        }
+
+        $("#language").change(function(){
+            renderI18N($(this).val());
+        }).change();
     </script>
 </body>
 </html>
