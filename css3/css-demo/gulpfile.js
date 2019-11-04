@@ -28,10 +28,10 @@ gulp.task("build:scss", function() {
         .pipe(postcss(postcssConfig))
         .pipe(plugins.rename(renameFunc))
         .pipe(gulp.dest(dist))
+        .pipe(reloadFunc())
         .pipe(plugins.minifyCss())
         .pipe(plugins.rename(renameMinFunc))
-        .pipe(gulp.dest(dist))
-        .pipe(reloadFunc());
+        .pipe(gulp.dest(dist));
 });
 
 gulp.task("build:html", function() {

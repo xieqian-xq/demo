@@ -1,0 +1,13 @@
+@import "./scss/index.scss";
+
+.card {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #eee;
+    text-align: center;
+    line-height: 100px;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 5px #eee;
+}

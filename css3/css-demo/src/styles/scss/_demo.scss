@@ -1,0 +1,17 @@
+.demo-box {
+    padding: 20px;
+}
+
+.demo-flex-box {
+    padding: 20px;
+    display: flex;
+
+    &-item {
+        flex: 1;
+        margin-right: 10px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
