@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>图片预加载</title>
+	<style>
+		.image-box {
+			width: 800px;
+			margin: 0 auto;
+		}
+
+		.image-box img {
+			width: 100%;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="imageBox" class="image-box"></div>
+	<script>
+		var pictureList = [
+			"https://up.enterdesk.com/edpic/40/f1/24/40f124b3b1775245ef40f78dfd838323.jpg",
+			"https://up.enterdesk.com/edpic/c9/3a/64/c93a640757ff1b9bb57c1da1791691d8.jpg",
+			"https://up.enterdesk.com/edpic/78/13/06/781306b22bab4c77a7d352a643d1edc6.jpg",
+			"https://up.enterdesk.com/edpic/f1/b6/6d/f1b66d52b0188be19f6ab31427b8d445.jpg"
+		];
+
+		let count = 0;
+		let len = pictureList.length;
+		pictureList.forEach(picture => {
+			var image = new Image();
+			var callback = function () {
+				count++;
+				console.log(Math.round(count / len * 100) + "%");
+				if (count == len) {
+					console.log("加载完成，开始添加图片");
+					pictureList.forEach(item => {
+						createImage(item);
+					});
+				}
+			};
+			image.onload = callback;
+			image.onerror = callback;
+			image.src = picture;
+		});
+
+		function createImage(src) {
+			var image = new Image();
+			image.src = src;
+			document.getElementById("imageBox").appendChild(image);
+		}
+	</script>
+</body>
+</html>
