@@ -1,0 +1,28 @@
+@import "./scss/index.scss";
+
+.hover-box {
+    height: 100px;
+    width: 100%;
+    background-color: #549688;
+    cursor: pointer;
+    position: relative;
+
+    &::after {
+        content: " ";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0px;
+        height: 5px;
+        background-color: orange;
+        transition: .5s;
+        margin-left: 0;
+    }
+
+    &:hover {
+        &::after {
+            width: 100%;
+            margin-left: -50%;
+        }
+    }
+}

@@ -38,9 +38,6 @@ gulp.task("build:html", function() {
     gulp.src("src/htmls/*.html", option)
         .pipe(plugins.rename(renameFunc))
         .pipe(gulp.dest(dist))
-        // .pipe(plugins.minifyHtml())
-        // .pipe(plugins.rename(renameMinFunc))
-        // .pipe(gulp.dest(dist))
         .pipe(reloadFunc());
 });
 
