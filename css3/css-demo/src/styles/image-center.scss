@@ -1,0 +1,39 @@
+@import "./scss/index.scss";
+$radius: 5px;
+
+.ic-box {
+    height: 400px;
+    background-color: #cb3a57;
+    border-radius: $radius;
+
+    &-image {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: $radius;
+    }
+
+    &-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-auto {
+        text-align: center;
+        line-height: 400px;
+
+        .ic-box-image {
+            vertical-align: middle;
+        }
+    }
+
+    &-table {
+        display: table;
+        text-align: center;
+
+        &-cell {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+}

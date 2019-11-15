@@ -31,6 +31,10 @@
             {
                 link: "../htmls/hover.html",
                 title: "悬浮效果"
+            },
+            {
+                link: "../htmls/image-center.html",
+                title: "图片居中"
             }
         ];
 
@@ -45,6 +49,7 @@
             link.className = "nav-block__link";
             link.href = linkObj.link;
             link.text = linkObj.title;
+            link.target = "_blank";
 
             let wrapper = document.createElement("div");
             wrapper.className = "nav-block";
