@@ -1,0 +1,13 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-weight: $fontDefault;
+    color: #333;
+    font-size: 14px;
+    user-select: none;
+}

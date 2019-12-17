@@ -1,0 +1,17 @@
+root = true
+
+[*]
+charset = utf-8
+# 缩进风格，"space"和"tab"可选
+indent_style = space
+# 缩进的大小
+indent_size = 2
+# lf, cr, crlf可选
+end_of_line = lf
+# 在最后一行插入新行
+insert_final_newline = true
+# 去掉前后空格
+trim_trailing_whitespace = true
+
+[*.md]
+trim_trailing_whitespace = false

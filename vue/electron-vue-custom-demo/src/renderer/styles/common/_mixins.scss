@@ -1,0 +1,63 @@
+@function px2rem($px) {
+    @return $px/(1/10 * 720px) * 1rem;
+}
+
+@mixin ellipsis($w:auto) {
+    width: $w;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+
+@mixin ellipsisLn($line) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+}
+
+@mixin text_wrap() {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+@mixin hyphens() {
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+
+@mixin loginBg() {
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@mixin icon($imageUrl, $length: 32px) {
+    width: $length;
+    height: $length;
+    background: url($imageUrl) center center no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+}
+
+@mixin flexRowCenter() {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flexColumnCenter() {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flexColumnCenterHorizontal() {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
