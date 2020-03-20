@@ -1,8 +1,7 @@
-export default class {
-    constructor(name) {
-        this.name = name;
-    }
+export const UTIL_count = 0;
+
+export default {
     getName() {
-        return this.name;
+        return "你的名字";
     }
-}
+};

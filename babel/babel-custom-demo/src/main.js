@@ -1,9 +1,17 @@
-import { version } from "../package.json";
+import util from "./util";
 
-export default () => {
-    let arr = version.split("");
-    let bool = arr.includes("2");
-    console.log(bool);
-    console.log("version " + version);
-    console.log(`我的天呀${arr}我的`);
-};
+let name = "xieqian";
+
+const age = 18;
+
+var { isKey } = { isKey: true };
+
+var dream = `请输出你的梦想，${ name }`;
+
+var isDream = dream.includes("梦想");
+
+var promise = new Promise();
+
+localStorage.setItem("ls", "测试兼容性");
+
+console.log(util.getName());
