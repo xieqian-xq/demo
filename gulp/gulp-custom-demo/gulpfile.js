@@ -52,7 +52,7 @@ gulp.task("build:js", function() {
 
 gulp.task("build:scss", function() {
     gulp.src("src/styles/*.scss", option)
-        .pipe(sass())
+        .pipe(sass().on('error', sass.logError))
         .pipe(postcss(postcssConfig))
         .pipe(plugins.rename(renameFunc))
         .pipe(gulp.dest(dist))
