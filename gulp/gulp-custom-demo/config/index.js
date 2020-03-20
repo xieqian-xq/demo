@@ -1,11 +1,5 @@
-const package = require("../package.json");
-const banner = `
-/*!
- * demo v${package.version}
- * (c) 2019-${new Date().getFullYear()} Qian Xie
- * Released under the MIT License.
- */`.trim();
+const rollupConfig = require("./rollup.config");
 
 module.exports = {
-    banner: banner
+    rollupConfig: rollupConfig
 };

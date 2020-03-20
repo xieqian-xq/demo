@@ -1,18 +1,12 @@
 const babel = require("rollup-plugin-babel");
 const rollupTypescript = require("rollup-plugin-typescript");
-const package = require("../package.json");
-const banner = `
-/*!
- * demo v${package.version}
- * (c) 2019-${new Date().getFullYear()} Qian Xie
- * Released under the MIT License.
- */`.trim();
+const constant = require("./constant");
 
 const rollupConfig = {
     external: undefined,
     output: {
         format: "iife",
-        banner: banner,
+        banner: constant.banner,
         name: "xqTree"
     },
     plugins: [babel()]
