@@ -1,10 +1,8 @@
 const gulp = require("gulp");
 const browserSync = require("browser-sync");
-const sass = require("gulp-sass");
-const postcss = require("gulp-postcss");
-const rollup = require("gulp-better-rollup");
 const del = require("del");
 const plugins = require("gulp-load-plugins")();
+const rollup = require("gulp-better-rollup");
 
 const config = require("./config");
 const postcssConfig = [require("autoprefixer")];
@@ -23,22 +21,37 @@ const reloadFunc = function() {
         stream: true
     });
 };
+const jsErrorFunc = err => {
+    plugins.util.log(plugins.util.colors.red("[Error]"), err.toString());
+};
+const addTimestamp = file => {
+    var contents = file.contents.toString();
+    contents = contents.replace(/href=\".+?\.css/gi, function(res) {
+        return res + "?" + config.uuid;
+    });
+    contents = contents.replace(/src=\".+?\.js/gi, function(res) {
+        return res + "?" + config.uuid;
+    });
+    file.contents = Buffer.from(contents);
+};
 
 gulp.task("build:js", function() {
     gulp.src("src/scripts/*.js", option)
         .pipe(rollup(config.rollupConfig.arg1, config.rollupConfig.arg2))
+        .on("error", jsErrorFunc)
         .pipe(plugins.rename(renameFunc))
         .pipe(gulp.dest(dist))
         .pipe(reloadFunc())
-        .pipe(plugins.uglify())
+        .pipe(plugins.terser())
+        .on("error", jsErrorFunc)
         .pipe(plugins.rename(renameMinFunc))
         .pipe(gulp.dest(dist));
 });
 
 gulp.task("build:scss", function() {
     gulp.src("src/styles/*.scss", option)
-        .pipe(sass().on("error", sass.logError))
-        .pipe(postcss(postcssConfig))
+        .pipe(plugins.sass().on("error", plugins.sass.logError))
+        .pipe(plugins.postcss(postcssConfig))
         .pipe(plugins.rename(renameFunc))
         .pipe(gulp.dest(dist))
         .pipe(reloadFunc())
@@ -50,6 +63,7 @@ gulp.task("build:scss", function() {
 gulp.task("build:html", function() {
     gulp.src(["src/htmls/*.html", "src/index.html"], option)
         .pipe(plugins.rename(renameFunc))
+        .pipe(plugins.tap(addTimestamp))
         .pipe(gulp.dest(dist))
         .pipe(reloadFunc());
 });
