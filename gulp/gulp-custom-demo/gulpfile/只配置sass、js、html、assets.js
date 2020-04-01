@@ -34,6 +34,7 @@ const addTimestamp = file => {
     });
     file.contents = Buffer.from(contents);
 };
+const isProduction = process.argv.includes("production");
 
 gulp.task("build:js", function() {
     gulp.src("src/scripts/*.js", option)

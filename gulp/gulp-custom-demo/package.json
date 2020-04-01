@@ -4,7 +4,7 @@
   "description": "基于gulp搭建的基础框架",
   "scripts": {
     "dev": "gulp clear && gulp",
-    "build": "gulp clear && gulp release"
+    "build": "gulp clear && gulp release --env production"
   },
   "keywords": [],
   "author": "xieqian",
