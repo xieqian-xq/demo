@@ -1,6 +1,8 @@
 const babel = require("rollup-plugin-babel");
 const rollupTypescript = require("rollup-plugin-typescript");
+const replace = require("rollup-plugin-replace");
 const constant = require("./constant");
+const isProduction = process.argv.includes("production");
 
 const rollupConfig = {
     external: undefined,
@@ -9,7 +11,7 @@ const rollupConfig = {
         banner: constant.banner,
         name: "xqTree"
     },
-    plugins: [babel()]
+    plugins: [babel(), replace({ "process.env.NODE_ENV": JSON.stringify(isProduction ? "production" : "development") })]
 };
 
 module.exports = {
