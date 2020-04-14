@@ -2,9 +2,9 @@ const package = require("../package.json");
 
 const banner = `
 /*!
- * demo v${package.version}
- * (c) 2019-${new Date().getFullYear()} Qian Xie
- * Released under the MIT License.
+ * ${package.name} v${package.version}
+ * (c) 2020-${new Date().getFullYear()} ${package.author}
+ * Released under the ${package.license} License.
  */`.trim();
 
 module.exports = {
