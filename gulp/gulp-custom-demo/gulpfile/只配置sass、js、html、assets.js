@@ -1,22 +1,24 @@
+const path = require("path");
 const gulp = require("gulp");
 const browserSync = require("browser-sync");
 const del = require("del");
 const plugins = require("gulp-load-plugins")();
 const rollup = require("gulp-better-rollup");
+const copy = require("copy");
 
 const config = require("./config");
 const postcssConfig = [require("autoprefixer")];
 const option = { base: "src" };
 const dist = __dirname + "/dist";
-const renameFunc = function(path) {
+const renameFunc = function (path) {
     if (path.basename === "index") {
         path.basename = "index";
     }
 };
-const renameMinFunc = function(path) {
+const renameMinFunc = function (path) {
     path.basename += ".min";
 };
-const reloadFunc = function() {
+const reloadFunc = function () {
     return browserSync.reload({
         stream: true
     });
@@ -26,17 +28,16 @@ const jsErrorFunc = err => {
 };
 const addTimestamp = file => {
     var contents = file.contents.toString();
-    contents = contents.replace(/href=\".+?\.css/gi, function(res) {
+    contents = contents.replace(/href=\".+?\.css/gi, function (res) {
         return res + "?" + config.uuid;
     });
-    contents = contents.replace(/src=\".+?\.js/gi, function(res) {
+    contents = contents.replace(/src=\".+?\.js/gi, function (res) {
         return res + "?" + config.uuid;
     });
     file.contents = Buffer.from(contents);
 };
-const isProduction = process.argv.includes("production");
 
-gulp.task("build:js", function() {
+gulp.task("build:js", function () {
     gulp.src("src/scripts/*.js", option)
         .pipe(rollup(config.rollupConfig.arg1, config.rollupConfig.arg2))
         .on("error", jsErrorFunc)
@@ -49,7 +50,7 @@ gulp.task("build:js", function() {
         .pipe(gulp.dest(dist));
 });
 
-gulp.task("build:scss", function() {
+gulp.task("build:scss", function () {
     gulp.src("src/styles/*.scss", option)
         .pipe(plugins.sass().on("error", plugins.sass.logError))
         .pipe(plugins.postcss(postcssConfig))
@@ -61,7 +62,7 @@ gulp.task("build:scss", function() {
         .pipe(gulp.dest(dist));
 });
 
-gulp.task("build:html", function() {
+gulp.task("build:html", function () {
     gulp.src(["src/htmls/*.html", "src/index.html"], option)
         .pipe(plugins.rename(renameFunc))
         .pipe(plugins.tap(addTimestamp))
@@ -69,27 +70,30 @@ gulp.task("build:html", function() {
         .pipe(reloadFunc());
 });
 
-gulp.task("build:asset", function() {
-    gulp.src("src/assets/**/*", option)
+gulp.task("build:asset", function (cb) {
+    gulp.src("src/assets/favicon.ico", option)
         .pipe(
-            plugins.rename(function(path) {
+            plugins.rename(function (path) {
                 if (path.basename === "favicon" && path.extname === ".ico") {
                     path.dirname = "";
                 }
             })
         )
-        .pipe(gulp.dest(dist))
-        .pipe(reloadFunc());
+        .pipe(gulp.dest(dist));
+    copy("src/assets/**/*", path.join(dist, "assets"), function () {
+        reloadFunc();
+        cb();
+    });
 });
 
-gulp.task("watch", function() {
+gulp.task("watch", function () {
     gulp.watch("src/scripts/**/*.js", ["build:js"]);
     gulp.watch("src/styles/**/*.scss", ["build:scss"]);
     gulp.watch(["src/htmls/**/*.html", "src/index.html"], ["build:html"]);
     gulp.watch("src/assets/**/*", ["build:asset"]);
 });
 
-gulp.task("server", function() {
+gulp.task("server", function () {
     browserSync.init({
         server: {
             baseDir: dist
@@ -101,7 +105,7 @@ gulp.task("server", function() {
     });
 });
 
-gulp.task("clear", function(cb) {
+gulp.task("clear", function (cb) {
     del(["dist/**/*"], cb);
 });
 
