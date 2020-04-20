@@ -1,6 +1,0 @@
-node_modules/
-.temp/
-dist/
-platforms/android/
-platforms/ios/
-package-lock.json
