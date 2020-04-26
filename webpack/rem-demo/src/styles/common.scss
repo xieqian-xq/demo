@@ -1,5 +1,0 @@
-@import './reset.css';
-
-@function px2rem($px) {
-    @return $px/72px * 1rem;
-}
